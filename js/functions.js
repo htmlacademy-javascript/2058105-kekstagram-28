@@ -7,7 +7,7 @@ findStringLength('house', 5);
 function isPalindrome(stringValue) {
   stringValue = stringValue.toLowerCase();
   stringValue = stringValue.replaceAll(' ', '');
-  return stringValue === stringValue.split('').reverse().join('');//превращаем в массив, перевертываем и превращаем обратно в строку
+  return stringValue === stringValue.split('').reverse().join('');
 }
 
 isPalindrome('Лёша на полке клопа нашёл ');
