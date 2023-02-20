@@ -18,9 +18,6 @@ findNumber('-2023 year 0.3');
 findNumber('а я томат');
 
 const createString = (string, length, symbols) => {
-  if(string.length >= length) {
-    return string;
-  }
   while(string.length < length) {
     const cutSymbols = length - string.length;
     string = symbols.slice(0, cutSymbols) + string;
