@@ -1,3 +1,2 @@
-import {createPhotos} from './data.js';
-
-console.log(createPhotos());
+import {renderPhotos} from './pictures.js';
+renderPhotos();
