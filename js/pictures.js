@@ -1,5 +1,5 @@
 import {createPhotos} from './data.js';
-import {openBigPicture} from './bigPictures.js';
+import {openBigPicture} from './big-pictures.js';
 
 const templatePicture = document.querySelector('#picture').content.querySelector('.picture');
 const pictures = document.querySelector('.pictures');
