@@ -1,6 +1,5 @@
 import {renderPhotos} from './pictures.js';
+import {uploadForm} from './upload-form.js';
 
 renderPhotos();
-
-import { makeForm } from './upload-file.js';
-makeForm();
+uploadForm();
