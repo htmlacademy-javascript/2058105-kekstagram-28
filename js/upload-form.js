@@ -1,3 +1,4 @@
+import {addScale, resetScale} from './photo-scale.js';
 import {isEscapeKey} from './utils.js';
 import {validateForm} from './validation-form.js';
 
@@ -16,6 +17,7 @@ const openForm = () => {
 };
 
 const closeForm = () => {
+  resetScale();
   imageUpload.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
@@ -40,6 +42,7 @@ const uploadForm = () => {
   uploadFile.addEventListener('change', openForm);
   buttonCloseForm.addEventListener('click', closeForm);
   validateForm();
+  addScale();
 };
 
 export{uploadForm};
