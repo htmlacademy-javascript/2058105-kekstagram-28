@@ -1,11 +1,16 @@
+import {addScale, resetScale} from './photo-scale.js';
 import {isEscapeKey} from './utils.js';
 import {validateForm} from './validation-form.js';
+import {addEffect, resetEffect, createSlider} from './photo-effects.js';
 
 const imageUpload = document.querySelector('.img-upload__overlay');
 const uploadFile = document.querySelector('#upload-file');
 const buttonCloseForm = document.querySelector('#upload-cancel');
 const textHashtags = document.querySelector('.text__hashtags');
 const textDescription = document.querySelector('.text__description');
+const effects = document.querySelector('.effects');
+
+const onEffectsChange = (evt) => addEffect(evt);
 
 const openForm = () => {
   imageUpload.classList.remove('hidden');
@@ -16,6 +21,8 @@ const openForm = () => {
 };
 
 const closeForm = () => {
+  resetScale();
+  resetEffect();
   imageUpload.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
@@ -39,7 +46,10 @@ function onInputKeydownEscape (evt) {
 const uploadForm = () => {
   uploadFile.addEventListener('change', openForm);
   buttonCloseForm.addEventListener('click', closeForm);
+  effects.addEventListener('change', onEffectsChange);
   validateForm();
+  addScale();
+  createSlider();
 };
 
 export{uploadForm};
