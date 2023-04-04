@@ -3,6 +3,7 @@ import {isEscapeKey} from './utils.js';
 import {validateForm} from './validation-form.js';
 import {addEffect, resetEffect, createSlider} from './photo-effects.js';
 
+const imageUploadForm = document.querySelector('.img-upload__form');
 const imageUpload = document.querySelector('.img-upload__overlay');
 const uploadFile = document.querySelector('#upload-file');
 const buttonCloseForm = document.querySelector('#upload-cancel');
@@ -21,6 +22,7 @@ const openForm = () => {
 };
 
 const closeForm = () => {
+  imageUploadForm.reset();
   resetScale();
   resetEffect();
   imageUpload.classList.add('hidden');
@@ -43,7 +45,7 @@ function onInputKeydownEscape (evt) {
   }
 }
 
-const uploadForm = () => {
+const addUploadForm = () => {
   uploadFile.addEventListener('change', openForm);
   buttonCloseForm.addEventListener('click', closeForm);
   effects.addEventListener('change', onEffectsChange);
@@ -52,4 +54,4 @@ const uploadForm = () => {
   createSlider();
 };
 
-export{uploadForm};
+export{addUploadForm};
