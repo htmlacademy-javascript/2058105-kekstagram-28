@@ -1,5 +1,6 @@
 const uploadForm = document.querySelector('.img-upload__form');
 const textHashtags = uploadForm.querySelector('.text__hashtags');
+
 const hashtagRegex = /^#[a-zа-яё0-9]{1,19}$/i;
 
 const pristine = new Pristine(uploadForm, {
@@ -33,13 +34,8 @@ const validateHashtag = () => {
   return true;
 };
 
-pristine.addValidator(textHashtags, validateHashtag, message);
+const addValidator = () => pristine.addValidator(textHashtags, validateHashtag, message);
+const resetPristine = () => pristine.reset();
+const validatePristine = () => pristine.validate();
 
-const validateForm = () => {
-  uploadForm.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    pristine.validate();
-  });
-};
-
-export{validateForm};
+export {addValidator, resetPristine, validatePristine};
