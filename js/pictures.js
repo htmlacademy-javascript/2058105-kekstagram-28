@@ -1,7 +1,8 @@
 import {openBigPicture} from './big-pictures.js';
 import {getData} from './api.js';
 
-const GET_URL = 'https://28.javascript.pages.academy/kekstagram/data';
+const GET_URL = 'https://28.javascript.pages.academ/kekstagram/data';
+const ALERT_SHOW_TIME = 5000;
 const templatePicture = document.querySelector('#picture').content.querySelector('.picture');
 const pictures = document.querySelector('.pictures');
 
@@ -22,7 +23,15 @@ const renderPictures = (data) => {
 };
 
 const onGetSuccess = (data) => renderPictures(data);
-const onGetFail = (data) => {};
+const onGetFail = () => {
+  const alertContainer = document.createElement('div');
+  alertContainer.classList.add('error__message');
+  alertContainer.textContent = 'Произошла ошибка загрузки';
+  document.body.append(alertContainer);
+  setTimeout(() => {
+    alertContainer.remove();
+  }, ALERT_SHOW_TIME);
+};
 
 const getPictureData = () => getData(GET_URL, onGetSuccess, onGetFail);
 
