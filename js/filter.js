@@ -1,7 +1,8 @@
 import {renderPictures} from './pictures.js';
-import {shuffleArray} from './utils.js';
+import {shuffleArray, debounce} from './utils.js';
 
 const RANDOM_PHOTOS_COUNT = 10;
+const RERENDER_DELAY = 500;
 const filters = document.querySelector('.img-filters');
 
 const removePictures = (pictures) => {
@@ -20,13 +21,14 @@ const rerenderPictures = (data, id) => {
   }
   renderPictures(sortArray);
 };
+const rerenderTimeOut = debounce((data, id) => rerenderPictures(data, id), RERENDER_DELAY);
 
 const onFilterClick = (evt, data) => {
   if(evt.target.closest('.img-filters__button') && !evt.target.closest('.img-filters__button--active')) {
     document.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
     evt.target.classList.add('img-filters__button--active');
     const id = evt.target.id;
-    rerenderPictures(data, id);
+    rerenderTimeOut(data, id);
   }
 };
 
