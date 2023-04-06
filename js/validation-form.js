@@ -1,6 +1,5 @@
 const uploadForm = document.querySelector('.img-upload__form');
 const textHashtags = uploadForm.querySelector('.text__hashtags');
-
 const hashtagRegex = /^#[a-zа-яё0-9]{1,19}$/i;
 
 const pristine = new Pristine(uploadForm, {

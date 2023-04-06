@@ -1,4 +1,5 @@
 import {isEscapeKey} from './utils.js';
+
 const templateSuccessMessage = document.querySelector('#success').content.querySelector('.success');
 const templateFailMessage = document.querySelector('#error').content.querySelector('.error');
 

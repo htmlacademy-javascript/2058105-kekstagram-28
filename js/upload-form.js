@@ -14,7 +14,6 @@ const textHashtags = document.querySelector('.text__hashtags');
 const textDescription = document.querySelector('.text__description');
 const effects = document.querySelector('.effects');
 const uploadSubmitButton = document.querySelector('.img-upload__submit');
-
 const onEffectsChange = (evt) => addEffect(evt);
 
 const openForm = () => {

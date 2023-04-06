@@ -1,6 +1,7 @@
 import {openBigPicture} from './big-pictures.js';
 import {getData} from './api.js';
 import {unitFilter} from './filter.js';
+import {getUploadFile} from './user-photo.js';
 
 const GET_URL = 'https://28.javascript.pages.academy/kekstagram/data';
 const ALERT_SHOW_TIME = 5000;
@@ -26,6 +27,7 @@ const renderPictures = (data) => {
 const onGetSuccess = (data) => {
   renderPictures(data);
   unitFilter(data);
+  getUploadFile();
 };
 
 const onGetFail = () => {
