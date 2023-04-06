@@ -1,5 +1,6 @@
 import {openBigPicture} from './big-pictures.js';
 import {getData} from './api.js';
+import {unitFilter} from './filter.js';
 
 const GET_URL = 'https://28.javascript.pages.academy/kekstagram/data';
 const ALERT_SHOW_TIME = 5000;
@@ -22,7 +23,11 @@ const renderPictures = (data) => {
   data.forEach((item) => pictures.append(renderPhotos(item)));
 };
 
-const onGetSuccess = (data) => renderPictures(data);
+const onGetSuccess = (data) => {
+  renderPictures(data);
+  unitFilter(data);
+};
+
 const onGetFail = () => {
   const alertContainer = document.createElement('div');
   alertContainer.classList.add('error__message');
@@ -35,4 +40,4 @@ const onGetFail = () => {
 
 const getPictureData = () => getData(GET_URL, onGetSuccess, onGetFail);
 
-export{getPictureData};
+export{getPictureData, renderPictures};
