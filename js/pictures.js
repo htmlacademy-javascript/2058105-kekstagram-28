@@ -24,12 +24,12 @@ const renderPictures = (data) => {
   data.forEach((item) => pictures.append(renderPhotos(item)));
 };
 
-const onGetSuccess = (data) => {
+const showSuccessForm = (data) => {
   renderPictures(data);
   unitFilter(data);
 };
 
-const onGetFail = () => {
+const showFailForm = () => {
   const alertContainer = document.createElement('div');
   alertContainer.classList.add('error__message');
   alertContainer.textContent = ALERT_ERROR;
@@ -39,6 +39,6 @@ const onGetFail = () => {
   }, ALERT_SHOW_TIME);
 };
 
-const getPictureData = () => getData(GET_URL, onGetSuccess, onGetFail);
+const getPictureData = () => getData(GET_URL, showSuccessForm, showFailForm);
 
 export{getPictureData, renderPictures};

@@ -4,7 +4,7 @@ import {addValidator, resetPristine, validatePristine} from './validation-form.j
 import {addEffect, resetEffect, createSlider} from './photo-effects.js';
 import {sendData} from './api.js';
 import {renderSuccessMessage, renderFailMessage} from './alert-messages.js';
-import {getUploadFile} from './user-photo.js';
+import {uploadUserFile} from './user-photo.js';
 
 const SEND_URL = 'https://28.javascript.pages.academy/kekstagram';
 const imageUploadForm = document.querySelector('.img-upload__form');
@@ -39,7 +39,7 @@ const closeForm = () => {
 };
 
 const onUploadFileChange = (evt) => {
-  getUploadFile(evt);
+  uploadUserFile(evt);
   openForm();
 };
 
