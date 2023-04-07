@@ -3,6 +3,8 @@ import {shuffleArray, debounce} from './utils.js';
 
 const RANDOM_PHOTOS_COUNT = 10;
 const RERENDER_DELAY = 500;
+const DISCUSSED_ID = 'filter-discussed';
+const RANDOM_ID = 'filter-random';
 const filters = document.querySelector('.img-filters');
 
 const removePictures = (pictures) => {
@@ -10,17 +12,17 @@ const removePictures = (pictures) => {
 };
 
 const rerenderPictures = (data, id) => {
-  const dataCopy = data.slice();
-  let sortArray = dataCopy;
+  let dataCopy = data.slice();
   removePictures(document.querySelectorAll('.picture'));
-  if (id === 'filter-discussed') {
-    sortArray = dataCopy.sort((a, b) => b.comments.length - a.comments.length);
+  if (id === DISCUSSED_ID) {
+    dataCopy = dataCopy.sort((a, b) => b.comments.length - a.comments.length);
   }
-  if (id === 'filter-random') {
-    sortArray = shuffleArray(dataCopy).slice(0, RANDOM_PHOTOS_COUNT);
+  if (id === RANDOM_ID) {
+    dataCopy = shuffleArray(dataCopy).slice(0, RANDOM_PHOTOS_COUNT);
   }
-  renderPictures(sortArray);
+  renderPictures(dataCopy);
 };
+
 const rerenderTimeOut = debounce((data, id) => rerenderPictures(data, id), RERENDER_DELAY);
 
 const onFilterClick = (evt, data) => {

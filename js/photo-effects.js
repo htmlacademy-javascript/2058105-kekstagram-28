@@ -62,6 +62,7 @@ const addEffect = (evt) => {
     resetEffect();
     return;
   }
+
   slider.classList.remove('hidden');
 
   const {name, min, max, step} = PHOTO_EFFECTS[evt.target.value];
