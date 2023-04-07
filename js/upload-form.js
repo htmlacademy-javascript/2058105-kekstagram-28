@@ -4,8 +4,9 @@ import {addValidator, resetPristine, validatePristine} from './validation-form.j
 import {addEffect, resetEffect, createSlider} from './photo-effects.js';
 import {sendData} from './api.js';
 import {renderSuccessMessage, renderFailMessage} from './alert-messages.js';
+import {getUploadFile} from './user-photo.js';
 
-const GET_URL = 'https://28.javascript.pages.academy/kekstagram';
+const SEND_URL = 'https://28.javascript.pages.academy/kekstagram';
 const imageUploadForm = document.querySelector('.img-upload__form');
 const imageUpload = document.querySelector('.img-upload__overlay');
 const uploadFile = document.querySelector('#upload-file');
@@ -14,6 +15,7 @@ const textHashtags = document.querySelector('.text__hashtags');
 const textDescription = document.querySelector('.text__description');
 const effects = document.querySelector('.effects');
 const uploadSubmitButton = document.querySelector('.img-upload__submit');
+
 const onEffectsChange = (evt) => addEffect(evt);
 
 const openForm = () => {
@@ -34,6 +36,16 @@ const closeForm = () => {
   document.removeEventListener('keydown', onDocumentKeydown);
   textHashtags.removeEventListener('keydown', onInputKeydownEscape);
   textDescription.removeEventListener('keydown', onInputKeydownEscape);
+};
+
+const onUploadFileChange = (evt) => {
+  getUploadFile(evt);
+  openForm();
+};
+
+const onButtonCloseFormClick = (evt) => {
+  evt.preventDefault();
+  closeForm();
 };
 
 const onSendSuccess = () => {
@@ -67,12 +79,13 @@ function onFormSubmit (evt) {
   evt.preventDefault();
   if(validatePristine()) {
     uploadSubmitButton.disabled = true;
-    sendData(GET_URL, onSendSuccess, onSendFail, new FormData(evt.target));
+    sendData(SEND_URL, onSendSuccess, onSendFail, new FormData(evt.target));
   }
 }
+
 const addUploadForm = () => {
-  uploadFile.addEventListener('change', openForm);
-  buttonCloseForm.addEventListener('click', closeForm);
+  uploadFile.addEventListener('change', onUploadFileChange);
+  buttonCloseForm.addEventListener('click', onButtonCloseFormClick);
   effects.addEventListener('change', onEffectsChange);
   imageUploadForm.addEventListener('submit', onFormSubmit);
   addValidator();

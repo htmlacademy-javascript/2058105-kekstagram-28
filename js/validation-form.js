@@ -1,6 +1,10 @@
+const HASHTAG_REGEX = /^#[a-zа-яё0-9]{1,19}$/i;
+const HASHTAG_COUNTER_ERROR = 'Не больше 5ти хештегов';
+const HASHTAG_UNIG_ERROR = 'Хэштеги не должны повторяться';
+const HASHTAG_ERROR = 'Хэштэг должен начинаться с # и содержать не больше 20 символов';
+
 const uploadForm = document.querySelector('.img-upload__form');
 const textHashtags = uploadForm.querySelector('.text__hashtags');
-const hashtagRegex = /^#[a-zа-яё0-9]{1,19}$/i;
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__field-wrapper',
@@ -15,18 +19,18 @@ const validateHashtag = () => {
   if(!textHashtags.value) {
     return true;
   }
-  const hashtags = textHashtags.value.trim().split(' ');
+  const hashtags = textHashtags.value.trim().toLowerCase().split(' ');
   if (hashtags.length > 5){
-    hashtagMessage = 'Не больше 5ти хештегов';
+    hashtagMessage = HASHTAG_COUNTER_ERROR;
     return false;
   }
   if (hashtags.length !== new Set(hashtags).size){
-    hashtagMessage = 'Хэштеги не должны повторяться';
+    hashtagMessage = HASHTAG_UNIG_ERROR;
     return false;
   }
   for (let i = 0; i < hashtags.length; i++){
-    if (!hashtags[i].match(hashtagRegex)){
-      hashtagMessage = 'Хэштэг должен начинаться с # и содержать не больше 20 символов';
+    if (!hashtags[i].match(HASHTAG_REGEX)){
+      hashtagMessage = HASHTAG_ERROR;
       return false;
     }
   }
